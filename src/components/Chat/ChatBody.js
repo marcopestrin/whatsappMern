@@ -1,26 +1,21 @@
 import React from 'react'
 import './style.scss'
-
 import ChatMessage from './ChatMessage'
 
-function ChatBody() {
+function ChatBody({messages}) {
     return (
         <div className="chat_body">
-            <ChatMessage />
-            <ChatMessage receiver/>
-            <ChatMessage />
-            <ChatMessage receiver/>
-            <ChatMessage />
-            <ChatMessage />
-            <ChatMessage />
-            <ChatMessage />
-            <ChatMessage />
-            <ChatMessage />
-            <ChatMessage />
-            <ChatMessage receiver/>
-            <ChatMessage />
-            <ChatMessage />
-            <ChatMessage />
+            {messages.map((mex, index) => {
+                return (
+                    <ChatMessage 
+                        key={index}
+                        timestamp={mex.timestamp}
+                        receiver={mex.receiver}
+                        name={mex.name}
+                        message={mex.message}
+                    />
+                )
+            })}
         </div>
     )
 }
