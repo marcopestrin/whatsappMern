@@ -34,13 +34,8 @@ const db = mongoose.connection
 db.once("open", () => {
     const msgCollection = db.collection(MESSAGE_COLLECTION)
     const changeStream = msgCollection.watch()
-console.log("111")
     changeStream.on('change', (change) => {
-        console.log("222")
-
         if (change.operationType === 'insert') {
-            console.log("3333")
-
             const messageDetails = change.fullDocument;
             pusher.trigger('messages', 'inserted', {
                 name: messageDetails.name,
